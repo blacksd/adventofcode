@@ -31,7 +31,7 @@ def match_score(my, opponent):
 
 
 total_score = 0
-with open('02-input.txt') as f:
+with open("02-input.txt") as f:
     lines = f.readlines()
     for line in lines:
         opponent_shape = line.split()[0]
