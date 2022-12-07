@@ -50,8 +50,17 @@ for node in PostOrderIter(root):
 
 print(RenderTree(root))
 
-total = 0
-for node in PostOrderIter(root, filter_=lambda n: n.total_size < 100000):
-    total += node.total_size
+TOTAL_DISK_SPACE = 70000000
+MINIMUM_DISK_SPACE = 30000000
+current_free_space = TOTAL_DISK_SPACE - root.total_size
+space_to_free = MINIMUM_DISK_SPACE - current_free_space
+print(f"We need to free at least {space_to_free}")
 
-print(f"The sum of the directories with files that add up to at most 100000 is {total}")
+selected_node = root
+for node in PostOrderIter(root, filter_=lambda n: n.total_size > space_to_free):
+    if node.total_size < selected_node.total_size:
+        selected_node = node
+
+print(
+    f"We should delete directory {selected_node.id} with a size of {selected_node.total_size}"
+)
