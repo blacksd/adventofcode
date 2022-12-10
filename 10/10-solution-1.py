@@ -5,7 +5,7 @@ if __name__ == "__main__":
         registry_buffer = [0, 0]
         registry_x = 1
         cycle_count = 0
-        for index, line in enumerate(lines):
+        for line in lines:
             sanitized_line = line.strip()
             instruction = sanitized_line.split()[0]
             if instruction == "addx":
